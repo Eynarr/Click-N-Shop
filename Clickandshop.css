@@ -1,0 +1,62 @@
+@charset "ISO-8859-1";
+
+header{
+	text-align:right;
+	background-color: #375437;
+}
+
+/* Formato del logo en el banner*/
+.logo{
+	height:100px;
+	width: auto;
+}
+
+/* Formato de imagenes en el banner*/
+.bannerimg{
+	height:40px;
+	width: auto;
+}
+
+.centrado{
+	text-align:center;
+}
+
+footer{
+	background-color:#F5F0E6;
+}
+.img {
+	width:auto;
+	height:200px;
+}
+
+.contactos{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:150px;
+	margin-bottom:150px;
+	width: 70%;
+}
+a{
+	text-decoration: none;
+	color:#1c1c1c
+}
+
+/* Estilos para barra de navegacion*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color:#1c1c1c;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
