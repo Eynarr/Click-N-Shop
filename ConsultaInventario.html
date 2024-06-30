@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Inventario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Consultar Productos por Inventario</h1>
+    <form method="post" action="consulta_inventario.jsp">
+        <label for="inventario">Inventario Mínimo:</label>
+        <input type="text" id="inventario" name="inventario" required pattern="\d+" title="Ingrese solo numeros." autocomplete="off">
+        <button type="submit">Consultar</button>
+    </form>	
+</body>
+</html>

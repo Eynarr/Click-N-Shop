@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Producto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Consultar Producto por ID</h1>
+    <form method="post" action="consulta_productos.jsp">
+        <label for="id_producto">ID del Producto:</label>
+        <input type="text" id="id_producto" name="id_producto" required pattern="\d+" title="Ingrese solo numeros." autocomplete="off">
+        <button type="submit">Buscar</button>
+    </form>
+</body>
+</html>
