@@ -4,26 +4,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Consulta de Órdenes</title>
-    <link rel="stylesheet" href="styleIS.css">
-        <style>
-        /* Estilos para la tabla */
-        table {
-            border-collapse: collapse;
-            width: 75%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-
-
-    
-    </style>
+    <title>Guardar Reseña</title>
+    <link rel="stylesheet" href="styleIS.css"> 
 </head>
 
 <header>
@@ -47,13 +29,14 @@
           <a href="consulta_resenhas.jsp">Reseñas</a>
           <a href="Sobre Nosotros.html">Sobre Nosotros</a>
           <a href="">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"> <!-- Vector carrito -->
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
               </svg>
             </a>
         <a href="https://www.facebook.com/" target="_blank"><img src="https://img.icons8.com/?size=100&id=118490&format=png&color=ffffff" alt="Facebook"></a>
         <a href="https://www.tiktok.com/foryou?lang=en" target="_blank"><img src="https://img.icons8.com/?size=100&id=juS4pYkbvSCh&format=png&color=ffffff" alt="TikTok"></a>
         <a href="https://www.youtube.com/" target="_blank"><img src="https://img.icons8.com/?size=100&id=85433&format=png&color=ffffff" alt="YouTube"></a>
+          
 
           
           
@@ -63,59 +46,47 @@
 
 <body>
 	<section>
-    <h1>Órdenes del Usuario</h1>
     <%
         // Obtenemos la sesión existente si existe
-        HttpSession sesion = request.getSession(false);
+        HttpSession ses = request.getSession(false);
         
         // Verificamos si la sesión y el id_usuario están presentes
-        if (session != null) {
+        if (ses != null) {
             Integer id_usuario = (Integer) session.getAttribute("id_usuario");
-            String nombre = (String) session.getAttribute("nombre_usuario");
-            String apellido = (String) session.getAttribute("apellido_usuario");
             
             // Verificamos si el id_usuario no es nulo
             if (id_usuario != null) {
+                // Obtenemos los datos del formulario
+                String idProductoStr = request.getParameter("id_producto");
+                String calificacion = request.getParameter("calificacion");
+                String descripcion = request.getParameter("descripcion");
+                
+                // Convertimos idProductoStr a número
+                int id_producto = Integer.parseInt(idProductoStr);
+
                 Connection connection = null;
                 PreparedStatement statement = null;
-                ResultSet resultSet = null;
                 
                 try {
                     // Establecemos la conexión con la base de datos
                     Class.forName("oracle.jdbc.driver.OracleDriver");
                     connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "Eynar", "123");
 
-                    // Preparamos la consulta SQL para obtener las órdenes del usuario
-                    String sql = "SELECT id_orden, cantidad_orden, estado_orden, id_carrito FROM Orden WHERE id_usuario = ?";
+                    // Preparamos la inserción SQL para guardar la reseña
+                    String sql = "INSERT INTO resenhas (id_resenha, id_usuario, calificacion, descripcion, id_producto) VALUES (seq_resenha.nextval, ?, ?, ?, ?)";
                     statement = connection.prepareStatement(sql);
                     statement.setInt(1, id_usuario);
+                    statement.setString(2, calificacion);
+                    statement.setString(3, descripcion);
+                    statement.setInt(4, id_producto);
 
-                    // Ejecutamos la consulta y obtenemos los resultados
-                    resultSet = statement.executeQuery();
+                    // Ejecutamos la inserción
+                    int rowsInserted = statement.executeUpdate();
 
-                    // Mostramos las órdenes del usuario si hay resultados
-                    if (resultSet.next()) {
-                        out.println("<h2>Órdenes del usuario " + nombre + "  " + apellido + ":</h2>");
-                        out.println("<table border='1'>");
-                        out.println("<tr><th>ID Orden</th><th>Cantidad de Productos</th><th>Estado</th><th>ID Carrito</th></tr>");
-                        
-                        do {
-                            int idOrden = resultSet.getInt("id_orden");
-                            int fechaOrden = resultSet.getInt("cantidad_orden");
-                            String estado = resultSet.getString("estado_orden");
-                            int idCarrito = resultSet.getInt("id_carrito");
-
-                            out.println("<tr>");
-                            out.println("<td>" + idOrden + "</td>");
-                            out.println("<td>" + fechaOrden + "</td>");
-                            out.println("<td>" + estado + "</td>");
-                            out.println("<td>" + idCarrito + "</td>");
-                            out.println("</tr>");
-                        } while (resultSet.next());
-
-                        out.println("</table>");
+                    if (rowsInserted > 0) {
+                        out.println("<h2>Reseña creada exitosamente.</h2>");
                     } else {
-                        out.println("<h2> No se encontraron ordenes de " + nombre + "  " + apellido + ":</h2>");
+                        out.println("<h2>Error al crear la reseña.</h2>");
                     }
                 } catch (ClassNotFoundException e) {
                     out.println("<h1 style='color: red;'>Error en el driver de la base de datos.</h1>");
@@ -124,15 +95,9 @@
                     out.println("<h1 style='color: red;'>Error de SQL: " + e.getMessage() + "</h1>");
                     e.printStackTrace();
                 } finally {
-                    // Cerramos los recursos (ResultSet, Statement, Connection)
-                    try {
-                        if (resultSet != null) resultSet.close();
-                        if (statement != null) statement.close();
-                        if (connection != null) connection.close();
-                    } catch (SQLException e) {
-                        out.println("<h1 style='color: red;'>Error al cerrar conexiones: " + e.getMessage() + "</h1>");
-                        e.printStackTrace();
-                    }
+                    // Cerramos los recursos (Statement, Connection)
+                    if (statement != null) statement.close();
+                    if (connection != null) connection.close();
                 }
             } else {
                 out.println("<h2>No se ha iniciado sesión.</h2>");
@@ -171,7 +136,7 @@
         <img src="https://img.icons8.com/?size=100&id=85140&format=png&color=000000" alt="Instagram">
         <img src="https://img.icons8.com/?size=100&id=85433&format=png&color=000000" alt="YouTube">
         
-    </nav> 
+    </nav>  
     </div>
     <p>Copyright 2024</p>
 

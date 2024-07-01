@@ -4,9 +4,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Consulta de Órdenes</title>
+    <title>Reseñas del Usuario</title>
     <link rel="stylesheet" href="styleIS.css">
-        <style>
+    <style>
         /* Estilos para la tabla */
         table {
             border-collapse: collapse;
@@ -47,13 +47,14 @@
           <a href="consulta_resenhas.jsp">Reseñas</a>
           <a href="Sobre Nosotros.html">Sobre Nosotros</a>
           <a href="">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"> <!-- Vector carrito -->
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
               </svg>
             </a>
         <a href="https://www.facebook.com/" target="_blank"><img src="https://img.icons8.com/?size=100&id=118490&format=png&color=ffffff" alt="Facebook"></a>
         <a href="https://www.tiktok.com/foryou?lang=en" target="_blank"><img src="https://img.icons8.com/?size=100&id=juS4pYkbvSCh&format=png&color=ffffff" alt="TikTok"></a>
         <a href="https://www.youtube.com/" target="_blank"><img src="https://img.icons8.com/?size=100&id=85433&format=png&color=ffffff" alt="YouTube"></a>
+          
 
           
           
@@ -62,14 +63,15 @@
 </header>
 
 <body>
+
 	<section>
-    <h1>Órdenes del Usuario</h1>
+    <h1>Reseñas del Usuario</h1>
     <%
         // Obtenemos la sesión existente si existe
-        HttpSession sesion = request.getSession(false);
+        HttpSession s = request.getSession(false);
         
         // Verificamos si la sesión y el id_usuario están presentes
-        if (session != null) {
+        if (s != null) {
             Integer id_usuario = (Integer) session.getAttribute("id_usuario");
             String nombre = (String) session.getAttribute("nombre_usuario");
             String apellido = (String) session.getAttribute("apellido_usuario");
@@ -85,37 +87,37 @@
                     Class.forName("oracle.jdbc.driver.OracleDriver");
                     connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "Eynar", "123");
 
-                    // Preparamos la consulta SQL para obtener las órdenes del usuario
-                    String sql = "SELECT id_orden, cantidad_orden, estado_orden, id_carrito FROM Orden WHERE id_usuario = ?";
+                    // Preparamos la consulta SQL para obtener las reseñas del usuario
+                    String sql = "SELECT * FROM resenhas WHERE id_usuario = ?";
                     statement = connection.prepareStatement(sql);
                     statement.setInt(1, id_usuario);
 
                     // Ejecutamos la consulta y obtenemos los resultados
                     resultSet = statement.executeQuery();
 
-                    // Mostramos las órdenes del usuario si hay resultados
+                    // Mostramos las reseñas del usuario si hay resultados
                     if (resultSet.next()) {
-                        out.println("<h2>Órdenes del usuario " + nombre + "  " + apellido + ":</h2>");
+                        out.println("<h2>Reseñas del usuario " + nombre + " " + apellido + ":</h2>");
                         out.println("<table border='1'>");
-                        out.println("<tr><th>ID Orden</th><th>Cantidad de Productos</th><th>Estado</th><th>ID Carrito</th></tr>");
+                        out.println("<tr><th>ID Reseña</th><th>Calificación</th><th>Descripción</th><th>ID Producto</th></tr>");
                         
                         do {
-                            int idOrden = resultSet.getInt("id_orden");
-                            int fechaOrden = resultSet.getInt("cantidad_orden");
-                            String estado = resultSet.getString("estado_orden");
-                            int idCarrito = resultSet.getInt("id_carrito");
+                            int idResenha = resultSet.getInt("id_resenha");
+                            String calificacion = resultSet.getString("calificacion");
+                            String descripcion = resultSet.getString("descripcion");
+                            int idProducto = resultSet.getInt("id_producto");
 
                             out.println("<tr>");
-                            out.println("<td>" + idOrden + "</td>");
-                            out.println("<td>" + fechaOrden + "</td>");
-                            out.println("<td>" + estado + "</td>");
-                            out.println("<td>" + idCarrito + "</td>");
+                            out.println("<td>" + idResenha + "</td>");
+                            out.println("<td>" + calificacion + "</td>");
+                            out.println("<td>" + descripcion + "</td>");
+                            out.println("<td>" + idProducto + "</td>");
                             out.println("</tr>");
                         } while (resultSet.next());
 
                         out.println("</table>");
                     } else {
-                        out.println("<h2> No se encontraron ordenes de " + nombre + "  " + apellido + ":</h2>");
+                        out.println("<h2>No se encontraron reseñas para " + nombre + " " + apellido + ".</h2>");
                     }
                 } catch (ClassNotFoundException e) {
                     out.println("<h1 style='color: red;'>Error en el driver de la base de datos.</h1>");
@@ -125,14 +127,9 @@
                     e.printStackTrace();
                 } finally {
                     // Cerramos los recursos (ResultSet, Statement, Connection)
-                    try {
-                        if (resultSet != null) resultSet.close();
-                        if (statement != null) statement.close();
-                        if (connection != null) connection.close();
-                    } catch (SQLException e) {
-                        out.println("<h1 style='color: red;'>Error al cerrar conexiones: " + e.getMessage() + "</h1>");
-                        e.printStackTrace();
-                    }
+                    if (resultSet != null) resultSet.close();
+                    if (statement != null) statement.close();
+                    if (connection != null) connection.close();
                 }
             } else {
                 out.println("<h2>No se ha iniciado sesión.</h2>");
@@ -141,6 +138,12 @@
             out.println("<h2>No se ha iniciado sesión.</h2>");
         }
     %>
+    <br>
+    <div>
+    <form action="guardar_resenha.jsp" method="post">
+            <button type="submit">Crear Reseña</button>
+        </form>
+    </div>
     </section>
 </body>
 

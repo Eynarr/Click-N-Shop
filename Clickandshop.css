@@ -20,8 +20,10 @@ table td img{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(55, 84, 55);
-    padding: 20px 20px;
+    background-image: linear-gradient(to right, rgb(55, 84, 55) , rgb(65, 52, 45)); /*Agregar gradiente de izquierda a derecha: verde a chocolate al banner superior.*/
+ 
+    
+    
   }
   
   .header a {
@@ -45,20 +47,18 @@ table td img{
   }
   
   header a img {
-    width: 200px;
+    width: 100px;
     height: auto;
   }
-/* Formato del logo en el banner*/
-.logo{
-	height:100px;
-	width: auto;
-}
+  
+  .header-derecha img{
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+  }
 
-/* Formato de imagenes en el banner*/
-.bannerimg{
-	height:40px;
-	width: auto;
-}
+
+
 
 .centrado{
 	text-align:center;
@@ -76,7 +76,7 @@ table td img{
 	width: 70%;
 }
 
-/* Estilos para barra de navegacion*/
+/* Estilos para el footer*/
 footer {
     display:flex;  
     flex-direction: column;
@@ -131,3 +131,4 @@ a {
 p {
     text-align: center;
 }
+

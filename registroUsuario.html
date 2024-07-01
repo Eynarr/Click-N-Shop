@@ -1,31 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Consultar Producto</title>
-    <link rel="stylesheet" href="styleIS.css">
-        <style>
-        /* Estilos para la tabla */
-        table {
-            border-collapse: collapse;
-            width: 75%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-
-
-    
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--viewport que se ajuste a la pantalla.-->
+    <title>Registrar usuario</title>
+    <link rel="stylesheet" href="styleRU.css">
 </head>
 <header>
     <div class="header">
-        <a href="Home.html" class="logo"><img src="img/Logo-removebg.png" alt="Logo"></a>
+<a href="Home.html" class="logo"><img src="img/Logo-removebg.png" alt="Logo"></a>
         <div class="header-derecha">
             <a href="https://www.google.com/" target="_blank"> 
                 <svg width="30px" height="30px" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><!--Vector lupa para el ícono de búsqeda-->
@@ -44,7 +27,7 @@
           <a href="consulta_resenhas.jsp">Reseñas</a>
           <a href="Sobre Nosotros.html">Sobre Nosotros</a>
           <a href="">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"> <!-- Vector carrito -->
                 <path fill-rule="evenodd" d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
               </svg>
             </a>
@@ -61,21 +44,52 @@
 
 <body>
     <section>
-    <h1>Consultar Producto por ID</h1>
-    <form method="post" action="consulta_productos.jsp">
-        <label for="id_producto">ID del Producto:</label>
-        <input type="text" id="id_producto" name="id_producto" required pattern="\d+" title="Ingrese solo numeros." autocomplete="off">
-        <button type="submit">Buscar</button>
-    </form>
-    </section>
-</body>
+    <h1>Registrar nuevo usuario</h1>
+    <form action="registrar_usuario.jsp" method="post">
+        <label for="Nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
 
+        <label for="Apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required><br>
+        
+        <label for="fecha">Fecha de Nacimiento:</label>
+        <input type="date" id="fecha" name="fecha" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="johnrichard@email.com" required><br>
+        
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required><br>
+        
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" placeholder="******" required><br>
+        
+
+        <label for="provinvia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia"><br>
+
+        <label for="Distrito">Distrito:</label>
+        <input type="text" id="distrito" name="distrito"><br>
+
+        <label for="Corregimiento">Corregimiento:</label>
+        <input type="text" id="corregimiento" name="corregimiento"><br>
+
+        <label for="Calle">Calle:</label>
+        <input type="text" id="calle" name="calle"><br>
+
+        <label for="numerocasa">Número de Casa:</label>
+        <input type="text" id="numerocasa" name="numerocasa"><br>
+
+        <input type="submit" value="Registrarse">
+    </form>
+</section>
+</body>
 <footer>
     <div class="divf">
     <nav>
         <ul>
             <li><a href="registroUsuario.html">Únete</a></li>
-			<li><a href="cerrar_sesion.jsp">Cerrar Sesión</a></li>
+			<li><a href="IniciarSesion.html">Iniciar Sesión</a></li>
             <li><a href="">Vender</a></li>
             <li><a href="">Ayuda</a></li>
         </ul>
@@ -90,14 +104,16 @@
         </ul>
     </nav>
 
-    <nav>
+   
+
+     <nav>
        
         <img src="https://img.icons8.com/?size=100&id=118490&format=png&color=000000" alt="Facebook">
         <img src="https://img.icons8.com/?size=100&id=juS4pYkbvSCh&format=png&color=000000" alt="TikTok">
         <img src="https://img.icons8.com/?size=100&id=85140&format=png&color=000000" alt="Instagram">
         <img src="https://img.icons8.com/?size=100&id=85433&format=png&color=000000" alt="YouTube">
         
-    </nav>  
+    </nav> 
     </div>
     <p>Copyright 2024</p>
 

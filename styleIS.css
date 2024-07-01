@@ -1,0 +1,171 @@
+html,
+body {
+  margin: 0;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: rgb(55, 84, 55);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /*color y font distinto al forms*/
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(55, 84, 55) , rgb(65, 52, 45)); /*Agregar gradiente de izquierda a derecha: verde a chocolate al banner superior.*/
+    
+  }
+  
+  
+  .header a {
+    
+    color: rgb(245, 240, 230);
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+  }
+  
+  
+ 
+  .header a:hover {
+    background-color: rgb(245, 240, 230);
+    color: black;
+  }
+
+  
+
+  .header-derecha {
+    display: flex;
+  }
+  
+  .header-derecha img{
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+  }
+
+  header a img {
+    width: 100px;
+    height: auto;
+  }
+
+
+/*Estilos para el section de la pagina*/
+section {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    margin: 0;
+
+    
+}
+h1 {
+    font-family: Arial, sans-serif;
+    color: rgb(55, 84, 55);
+    text-align: center;
+    margin-top: 20px;
+}
+
+form {
+    color: rgb(65, 52, 45);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+label {
+    
+    font-weight: bold;
+}
+input[type="email"],
+input[type="password"] {/*Estilos de los inputs de email y contraseña*/
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgb(65, 52, 45);
+    border-radius: 5px;
+}
+button[type="submit"] { /*Estilos del boton*/
+    background-color: rgb(55, 84, 55);
+    color: rgb(245, 240, 230);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button[type="submit"]:hover { /*Estilos del boton cuando esta encima*/
+    background-color: rgb(65, 52, 45);
+}
+
+
+
+
+/* Estilos para el pie de página */
+footer {
+    display:flex;  
+    flex-direction: column;
+    background-color: rgb(245, 240, 230);
+    color: black;
+    
+    padding: 20px 0;
+}
+
+.divf {
+    display:flex;  
+    align-items: center;
+    
+}
+
+.divg {
+	display:flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+nav {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+nav p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* iconos de redes */
+nav img {
+    
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+a {
+    color: rgb(65, 52, 45);
+    text-decoration: none;
+}
+
+p {
+    text-align: center;
+}
