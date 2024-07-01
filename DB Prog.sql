@@ -30,6 +30,9 @@ CREATE TABLE UsuarioComprador (
     CONSTRAINT pk_id_usuario PRIMARY KEY (id_usuario)
 );
 
+-- Alterar la tabla para permitir nulos en ID_CARRITO
+ALTER TABLE UsuarioComprador MODIFY (ID_CARRITO NULL);
+
 CREATE TABLE Telefono (
     id_telefono NUMBER ,
     telefono VARCHAR2(20) NOT NULL,
