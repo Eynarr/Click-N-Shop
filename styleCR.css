@@ -1,0 +1,60 @@
+/* Estilos del boton */
+.submit {
+    background-color: rgb(55, 84, 55);
+    color: rgb(245, 240, 230);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Convertir el botón en bloque para centrarlo */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+.submit:hover {
+    background-color: rgb(65, 52, 45);
+}
+
+/* Estilo para el select */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgb(65, 52, 45);
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(65, 52, 45);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Estilo para las opciones seleccionadas en el select */
+select option:checked {
+    background-color: rgb(55, 84, 55);
+    color: rgb(245, 240, 230);
+}
+
+/* Estilo para el select cuando está enfocado */
+select:focus {
+    border-color: rgb(55, 84, 55);
+    outline: none;
+}
+
+/* Estilo para la opción predeterminada */
+select option {
+    background-color: white;
+    color: rgb(65, 52, 45);
+}
+
+/* Estilos para el textarea */
+textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgb(65, 52, 45);
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(55, 84, 55);
+    font-family: 'Courier New', Courier, monospace;
+    height: 100px;
+    resize: none;
+}

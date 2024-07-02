@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Crear Reseña</title>
+    <link rel="stylesheet" href="styleCR.css">
     <link rel="stylesheet" href="styleIS.css">
 </head>
 
@@ -77,9 +78,11 @@
                     // Mostramos los productos comprados por el usuario si hay resultados
                     if (resultSet.next()) {
     %>
+    					
                         <form action="ingresar_resenha.jsp" method="post">
                             <label for="id_producto">Producto:</label>
                             <select id="id_producto" name="id_producto" required>
+                            <br>
                                 <%
                                     do {
                                         int idProducto = resultSet.getInt("id_producto");
@@ -87,23 +90,24 @@
                                         out.println("<option value=\"" + idProducto + "\">" + nombreProducto + "</option>");
                                     } while (resultSet.next());
                                 %>
-                            </select><br>
+                            </select><br><br>
                             
                             <label for="calificacion">Calificación:</label>
 						    <select id="calificacion" name="calificacion" required>
 						        <option value="">Seleccione una calificación</option>
-						        <option value="5">⭐⭐⭐⭐⭐</option>
-						        <option value="4">⭐⭐⭐⭐</option>
-						        <option value="3">⭐⭐⭐</option>
-						        <option value="2">⭐⭐</option>
-						        <option value="1">⭐</option>
-						    </select><br>
+						        <option value="5 Estrellas">⭐⭐⭐⭐⭐</option>
+						        <option value="4 Estrellas">⭐⭐⭐⭐</option>
+						        <option value="3 Estrellas">⭐⭐⭐</option>
+						        <option value="2 Estrellas">⭐⭐</option>
+						        <option value="1 Estrellas">⭐</option>
+						    </select><br><br>
                           
                             <label for="descripcion">Descripción:</label>
-                            <input type="text" id="descripcion" name="descripcion" required autocomplete="off"><br>
+    						<textarea id="descripcion" name="descripcion" required></textarea><br><br>
                             
-                            <input type="submit" value="Crear Reseña">
+                            <input type="submit" value="Crear Reseña" class="submit">
                         </form>
+                        
     <%
                     } else {
                         out.println("<h2>No se encontraron productos comprados.</h2>");
