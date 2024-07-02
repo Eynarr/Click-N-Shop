@@ -4,6 +4,6 @@
 <%
     // Invalidar la sesión actual
     request.getSession().invalidate();
-    // Redirigir a home
-    response.sendRedirect("Home.html");
+    // Redirigir a la pagina de Iniciar Sesion
+    response.sendRedirect("IniciarSesion.html");
 %>
