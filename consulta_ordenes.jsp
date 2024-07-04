@@ -6,24 +6,7 @@
     <meta charset="UTF-8">
     <title>Consulta de Órdenes</title>
     <link rel="stylesheet" href="styleIS.css">
-        <style>
-        /* Estilos para la tabla */
-        table {
-            border-collapse: collapse;
-            width: 75%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-
-
-    
-    </style>
+       
 </head>
 
 <header>
