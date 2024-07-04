@@ -6,24 +6,7 @@
     <meta charset="UTF-8">
     <title>Reseñas del Usuario</title>
     <link rel="stylesheet" href="styleIS.css">
-    <style>
-        /* Estilos para la tabla */
-        table {
-            border-collapse: collapse;
-            width: 75%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-
-
     
-    </style>
 </head>
 
 <header>
@@ -138,6 +121,7 @@
             out.println("<h2>No se ha iniciado sesión.</h2>");
         }
     %>
+    <br>
     <br>
     <div>
     <form action="guardar_resenha.jsp" method="post">
